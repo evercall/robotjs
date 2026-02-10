@@ -102,7 +102,8 @@ MMKeyCode keyCodeForChar(const char c)
 	CFRelease(charStr);
 	return (MMKeyCode)code;
 #elif defined(IS_WINDOWS)
-	return VkKeyScan(c);
+	HKL layout = GetKeyboardLayout(0);
+	return VkKeyScanExA(c, layout);
 #elif defined(USE_X11)
 	MMKeyCode code;
 
