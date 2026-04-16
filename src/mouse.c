@@ -132,9 +132,9 @@ void moveMouse(MMSignedPoint point)
 	//Mouse motion is now done using SendInput with MOUSEINPUT. We use Absolute mouse positioning
 	#define MOUSE_COORD_TO_ABS(coord, width_or_height) ((65536 * (coord) / width_or_height) + ((coord) < 0 ? -1 : 1))
 
-	size_t x = MOUSE_COORD_TO_ABS(point.x-vscreenMinX, vscreenWidth);
-	size_t y = MOUSE_COORD_TO_ABS(point.y-vscreenMinY, vscreenHeight);
-
+	int32_t x = MOUSE_COORD_TO_ABS(point.x - vscreenMinX, vscreenWidth);
+	int32_t y = MOUSE_COORD_TO_ABS(point.y - vscreenMinY, vscreenHeight);
+	
 	INPUT mouseInput = {0};
 	mouseInput.type = INPUT_MOUSE;
 	mouseInput.mi.dx = x;
@@ -371,10 +371,10 @@ static double crude_hypot(double x, double y)
 	return ((M_SQRT2 - 1.0) * small) + big;
 }
 
-bool smoothlyMoveMouse(MMPoint endPoint,double speed)
+bool smoothlyMoveMouse(MMSignedPoint endPoint,double speed)
 {
 	MMSignedPoint pos = getMousePos();
-	MMSize screenSize = getMainDisplaySize();
+	MMSignedSize screenSize = getMainDisplaySize();
 	double velo_x = 0.0, velo_y = 0.0;
 	double distance;
 
@@ -392,12 +392,6 @@ bool smoothlyMoveMouse(MMPoint endPoint,double speed)
 
 		pos.x += floor(velo_x + 0.5);
 		pos.y += floor(velo_y + 0.5);
-
-		/* Make sure we are in the screen boundaries!
-		 * (Strange things will happen if we are not.) */
-		if (pos.x >= (int32_t)screenSize.width || pos.y >= (int32_t)screenSize.height) {
-			return false;
-		}
 
 		moveMouse(pos);
 

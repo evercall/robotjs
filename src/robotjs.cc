@@ -131,8 +131,8 @@ return env.Null();
 	size_t x = info[0].As<Napi::Number>().Int32Value();
 	size_t y = info[1].As<Napi::Number>().Int32Value();
 
-	MMPoint point;
-	point = MMPointMake(x, y);
+	MMSignedPoint point;
+	point = MMSignedPointMake(x, y);
 	if (info.Length() == 3)
 	{
 		size_t speed = info[2].As<Napi::Number>().Int32Value();
