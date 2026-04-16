@@ -49,7 +49,7 @@ char *getXDisplay(void)
 	return displayName;
 }
 
-void setXDisplay(char *name)
+void setXDisplay(const char *name)
 {
 	displayName = strdup(name);
 	hasDisplayNameChanged = 1;

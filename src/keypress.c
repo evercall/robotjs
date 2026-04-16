@@ -22,7 +22,7 @@
 		(XTestFakeKeyEvent(display, \
 		                   XKeysymToKeycode(display, key), \
 		                   is_press, CurrentTime), \
-		 XSync(display, false))
+		 XFlush(display))
 	#define X_KEY_EVENT_WAIT(display, key, is_press) \
 		(X_KEY_EVENT(display, key, is_press))
 #endif
@@ -94,11 +94,6 @@ void win32KeyEvent(int key, MMKeyFlags flags)
 			flags |= KEYEVENTF_EXTENDEDKEY;
 			break;
 		}
-	}
-
-	/* Set the scan code for keyup */
-	if ( flags & KEYEVENTF_KEYUP ) {
-		scan |= 0x80;
 	}
 
 	flags |= KEYEVENTF_SCANCODE;

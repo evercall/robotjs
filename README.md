@@ -1,7 +1,5 @@
 <p align="center"><img src="https://cldup.com/1ATDf2JMtv.png"></p>
 
-<p align="center"><a href="https://travis-ci.org/octalmage/robotjs"><img src="https://api.travis-ci.org/octalmage/robotjs.svg?branch=master"></a> <a href="https://ci.appveyor.com/project/octalmage/robotjs"><img src="https://ci.appveyor.com/api/projects/status/qh2eqb37j7ap6x36?svg=true"></a> <a href="https://www.npmjs.com/package/robotjs"><img src="https://img.shields.io/npm/v/robotjs.svg"></a> <a href="https://gitter.im/octalmage/robotjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"><img src="https://img.shields.io/badge/gitter-join%20chat-blue.svg"></a> <a href="http://waffle.io/octalmage/robotjs"><img src="https://img.shields.io/waffle/label/octalmage/robotjs/ready.svg?maxAge=3600"></a></p>
-
 > Node.js Desktop Automation. Control the mouse, keyboard, and read the screen.
 
 RobotJS supports Mac, [Windows](https://github.com/octalmage/robotjs/issues/2), and [Linux](https://github.com/octalmage/robotjs/issues/17).
@@ -10,13 +8,11 @@ This is a work in progress so the exported functions could change at any time be
 
 [Check out some of the cool things people are making with  RobotJS](https://github.com/octalmage/robotjs/wiki/Projects-using-RobotJS)! Have your own rad RobotJS project? Feel free to add it!
 
-<p align="center"><a href="https://twitter.com/robotjavascript"><img width="300" src="https://cldup.com/Et-C6_ue45.png"></a><a href="http://blog.robotjs.io"><img width="300" src="https://cldup.com/3apDirNmSB.png"></a></p>
-
 ## Contents
 
 - [Installation](#installation)
 - [Examples](#examples)
-- [API](https://robotjs.io/docs/syntax)
+- [API](https://robotjs.dev/docs/syntax)
 - [Building](#building)
 - [Plans](#plans)
 - [Progress](#progress)
@@ -89,9 +85,9 @@ console.log("#" + hex + " at x:" + mouse.x + " y:" + mouse.y);
 ```
 Read the [Wiki](https://github.com/octalmage/robotjs/wiki) for more information!
 
-## [API](http://robotjs.io/docs/syntax)
+## [API](http://robotjs.dev/docs/syntax)
 
-The RobotJS API is hosted at <https://robotjs.io/docs/syntax>.
+The RobotJS API is hosted at <https://robotjs.dev/docs/syntax>.
 
 ## Building
 
