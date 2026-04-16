@@ -836,7 +836,7 @@ Napi::Value captureScreenWrapper(const Napi::CallbackInfo& info)
 		y = 0;
 
 		//Get screen size.
-		MMSize displaySize = getMainDisplaySize();
+		MMSignedSize displaySize = getMainDisplaySize();
 		w = displaySize.width;
 		h = displaySize.height;
 	}
