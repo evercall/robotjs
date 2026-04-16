@@ -772,7 +772,7 @@ Napi::Value getScreenSizeWrapper(const Napi::CallbackInfo& info)
 	Napi::Env env = info.Env();
 
 	//Get display size.
-	MMSize displaySize = getMainDisplaySize();
+	MMSignedSize displaySize = getMainDisplaySize();
 
 	//Create our return object.
 	Napi::Object obj = Napi::Object::New(env);
