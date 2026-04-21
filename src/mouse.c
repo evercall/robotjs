@@ -4,6 +4,8 @@
 #include "microsleep.h"
 
 #include <math.h> /* For floor() */
+#include "math_utils.h" /* lerp */
+#include <stdio.h>
 
 #if defined(IS_MACOSX)
 	#include <ApplicationServices/ApplicationServices.h>
@@ -129,11 +131,8 @@ void moveMouse(MMSignedPoint point)
 	if(vscreenWidth<0 || vscreenHeight<0)
 		updateScreenMetrics();
 
-	//Mouse motion is now done using SendInput with MOUSEINPUT. We use Absolute mouse positioning
-	#define MOUSE_COORD_TO_ABS(coord, width_or_height) ((65536 * (coord) / width_or_height) + ((coord) < 0 ? -1 : 1))
-
-	int32_t x = MOUSE_COORD_TO_ABS(point.x - vscreenMinX, vscreenWidth);
-	int32_t y = MOUSE_COORD_TO_ABS(point.y - vscreenMinY, vscreenHeight);
+	int32_t x = floor(lerp(0, 65535, (point.x - vscreenMinX) / (float)vscreenWidth));
+	int32_t y = floor(lerp(0, 65535, (point.y - vscreenMinY) / (float)vscreenHeight));
 	
 	INPUT mouseInput = {0};
 	mouseInput.type = INPUT_MOUSE;

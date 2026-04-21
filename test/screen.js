@@ -1,5 +1,5 @@
 var robot = require('..');
-var pixelColor, screenSize;
+var pixelColor;
 
 describe('Screen', () => {
   it('Get pixel color.', function()
@@ -32,8 +32,9 @@ describe('Screen', () => {
 
   it('Get screen size.', function()
   {
-    expect(screenSize = robot.getScreenSize()).toBeTruthy();
-    expect(screenSize.width !== undefined).toBeTruthy();
-    expect(screenSize.height !== undefined).toBeTruthy();
+    const screenSize = robot.getScreenSize();
+
+    expect(screenSize.width).toBeDefined();
+    expect(screenSize.height).toBeDefined();
   });
 });
