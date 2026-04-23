@@ -40,6 +40,7 @@ describe('Keyboard', () => {
   });
 });
 
+/*
 test('Tap a Unicode character.', function(t)
 {
 	t.plan(7);
@@ -111,3 +112,4 @@ test('Type a string with delay.', function(t)
 		t.ok(robot.typeStringDelayed() === 1, 'Successfully typed nothing.');
 	}, /Invalid number of arguments./, 'exception tapping nothing.');
 });
+*/

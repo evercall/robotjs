@@ -410,8 +410,10 @@ static KeyNames key_names[] =
 int CheckKeyCodes(const char* k, MMKeyCode *key)
 {
 	if (!key) return -1;
+	
+	int length = strlen(k);
 
-	if (strlen(k) == 1)
+	if (length == 1)
 	{
 		*key = keyCodeForChar(*k);
 		return 0;
@@ -472,8 +474,8 @@ int CheckKeyFlags(const char* f, MMKeyFlags* flags)
 
 int GetFlagsFromString(Napi::Value value, MMKeyFlags* flags) {
 	Napi::Env env = value.Env();
-	Napi::String fstr(env, value.ToString());
-	return CheckKeyFlags(fstr.Utf8Value().c_str(), flags);
+	std::string fstr = value.As<Napi::String>();
+	return CheckKeyFlags(fstr.c_str(), flags);
 }
 
 int GetFlagsFromValue(Napi::Value value, MMKeyFlags* flags) {
@@ -509,10 +511,6 @@ Napi::Value keyTapWrapper(const Napi::CallbackInfo& info)
 
 	MMKeyFlags flags = MOD_NONE;
 	MMKeyCode key;
-	const char *k;
-
-	Napi::String kstr(env, info[0].ToString());
-	k = kstr.Utf8Value().c_str();
 
 	switch (info.Length())
 	{
@@ -535,6 +533,9 @@ return env.Null();
 			Napi::Error::New(env, "Invalid number of arguments.").ThrowAsJavaScriptException();
 return env.Null();
 	}
+
+	std::string kstr = info[0].As<Napi::String>();
+	const char *k = kstr.c_str();
 
 	switch(CheckKeyCodes(k, &key))
 	{
@@ -566,13 +567,8 @@ Napi::Value keyToggleWrapper(const Napi::CallbackInfo& info)
 	MMKeyCode key;
 
 	bool down;
-	const char *k;
 
-	//Get arguments from JavaScript.
-	std::string kstr = info[0].As<Napi::String>();
-
-	//Convert arguments to chars.
-	k = kstr.c_str();
+	
 
 	//Check and confirm number of arguments.
 	switch (info.Length())
@@ -598,13 +594,17 @@ return env.Null();
 return env.Null();
 	}
 
+	//Get arguments from JavaScript.
+	std::string kstr = info[0].As<Napi::String>();
+
+	//Convert arguments to chars.
+	const char *k = kstr.c_str();
+
 	//Get down value if provided.
 	if (info.Length() > 1)
 	{
-		const char *d;
-
 		std::string dstr = info[1].As<Napi::String>();
-		d = dstr.c_str();
+		const char *d = dstr.c_str();
 
 		if (strcmp(d, "down") == 0)
 		{
@@ -661,10 +661,9 @@ Napi::Value typeStringWrapper(const Napi::CallbackInfo& info)
 	Napi::Env env = info.Env();
 
 	if (info.Length() > 0) {
-		const char *s;
 		std::string str = info[0].As<Napi::String>();
 
-		s = str.c_str();
+		const char *s = str.c_str();
 
 		typeStringDelayed(s, 0);
 
@@ -680,10 +679,9 @@ Napi::Value typeStringDelayedWrapper(const Napi::CallbackInfo& info)
 	Napi::Env env = info.Env();
 
 	if (info.Length() > 0) {
-		const char *s;
 		std::string str = info[0].As<Napi::String>();
 
-		s = str.c_str();
+		const char *s = str.c_str();
 
 	size_t cpm = info[1].As<Napi::Number>().Int32Value();
 
